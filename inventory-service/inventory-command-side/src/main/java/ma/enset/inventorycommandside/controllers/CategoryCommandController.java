@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/inventory/categories/command")
+@RequestMapping("/categories/command")
 @AllArgsConstructor
 public class CategoryCommandController {
     private CommandGateway commandGateway;

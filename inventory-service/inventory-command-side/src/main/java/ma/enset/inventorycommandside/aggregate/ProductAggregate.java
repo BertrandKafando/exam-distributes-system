@@ -3,8 +3,10 @@ package ma.enset.inventorycommandside.aggregate;
 import lombok.extern.slf4j.Slf4j;
 import ma.enset.commands.CreateProductCommand;
 import ma.enset.enums.ProductState;
+import ma.enset.events.CategoryCreatedEvent;
 import ma.enset.events.ProductCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -38,4 +40,15 @@ public class ProductAggregate {
         ));
     }
 
+    @EventSourcingHandler
+    public  void on(ProductCreatedEvent event){
+        log.info("****************************");
+        log.info("ProductCreatedEvent occured");
+        this.id = event.getId();
+        this.name = event.getName();
+        this.price = event.getPrice();
+        this.quantity = event.getQuantity();
+        this.state = event.getState();
+        this.categoryId = event.getCategoryId();
+    }
 }

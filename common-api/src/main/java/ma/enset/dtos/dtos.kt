@@ -8,7 +8,7 @@ data class CustomerCommandDTO (
         var phone: String
         );
 
-data class CustomerQueryDTO (
+data class CustomerResponseDTO (
         var id: String,
         var name: String,
         var email: String,
@@ -23,8 +23,23 @@ data class ProductCommandDTO (
         var categoryId: String
         );
 
+data class ProductResponseDTO (
+        var id : String,
+        var name: String,
+        var price: Double,
+        var quantity: Integer,
+        var state: ProductState,
+        var categoryId: String
+);
+
 
 data class CategoryCommandDTO (
         var name: String,
         var description: String,
         );
+
+data class CategoryResponseDTO (
+        var id :String,
+        var name: String,
+        var description: String,
+);

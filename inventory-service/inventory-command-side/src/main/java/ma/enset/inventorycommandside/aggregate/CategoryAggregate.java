@@ -6,6 +6,7 @@ import ma.enset.commands.CreateCustomerCommand;
 import ma.enset.events.CategoryCreatedEvent;
 import ma.enset.events.ProductCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -31,5 +32,13 @@ public class CategoryAggregate {
                 command.getName(),
                 command.getDescription()
         ));
+    }
+    @EventSourcingHandler
+    public  void on(CategoryCreatedEvent event){
+        log.info("****************************");
+        log.info("CategoryCreatedEvent occured");
+        this.id = event.getId();
+        this.name = event.getName();
+        this.description = event.getDescription();
     }
 }
